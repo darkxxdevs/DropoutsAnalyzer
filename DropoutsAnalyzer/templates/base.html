@@ -14,6 +14,7 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- CSS Files -->
     <link href="{% static 'Charts/' %}style.css" rel="stylesheet" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
@@ -38,33 +39,11 @@
             </div> -->
           </a>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              
-                    // Get the current URL
-                    var currentURL = window.location.href;
-                    var match = currentURL.match(/\/([^/]+)\/?$/);
-                    var postfix = 'home';
-                    if (match && match[1]) {
-                        postfix = match[1];
-                    }
-                    if (postfix === window.location.hostname) {
-                      postfix = 'home';
-                        }
-                    var element = document.getElementById(postfix);
-                    console.log(window.location.hostname)
-                    if (element) {
-
-                      element.setAttribute('class', 'active');
-                    }
-                });
-
-        </script>
-        <div class="sidebar-wrapper">
-          <ul class="nav">
-            <li id="home">
-              <a href="{% url 'home' %}">
-                <i class="nc-icon nc-bank"></i>
+     <div class="sidebar-wrapper">
+     <ul class="nav">
+     <li id="home">
+      <a href="{% url 'home' %}">
+                <i class="ri-home-line"></i>
                 <p>Home</p>
               </a>
             </li >
@@ -72,12 +51,13 @@
               <a href="{% url 'charts' %}">
                 <i class="nc-icon nc-chart-bar-32"></i>
                 <p>Chart View</p>
+                
               </a>
             </li>
             <li>
               <a href="/admin">
-                <i class="nc-icon nc-badge"></i>
-                <p>Admin Panel</p>
+                <i class="ri-admin-line"></i>
+                <p>Admin panel</p>
               </a>
             </li>
             <li>
@@ -85,7 +65,14 @@
                 <i class="nc-icon nc-badge"></i>
                 <p>Volunteer </p>
               </a>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown-item" href="#" data-toggle="modal" data-target="#feedbackModal">
+                  <i class="nc-icon nc-chat-33"></i>
+                  Feedback
+                </a>
+              </li>
+              
+          
           </ul>
         </div>
       </div>
@@ -186,6 +173,33 @@
     demo.initChartsPages();
   });
 </script>
+<!-- Feedback Popup -->
+<div id="feedbackModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Give Feedback</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="feedbackText">Enter your feedback:</label>
+            <textarea class="form-control" id="feedbackText" rows="4"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit Feedback</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 
 </html>
